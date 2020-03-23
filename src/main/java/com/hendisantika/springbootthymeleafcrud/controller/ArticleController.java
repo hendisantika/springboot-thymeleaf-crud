@@ -1,5 +1,6 @@
 package com.hendisantika.springbootthymeleafcrud.controller;
 
+import com.hendisantika.springbootthymeleafcrud.entity.Article;
 import com.hendisantika.springbootthymeleafcrud.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,5 +43,11 @@ public class ArticleController {
         model.addAttribute("articleView", articleService.getArticle(slug));
         return "articles/view";
     }
+
+    @GetMapping("/article/create")
+    public String create(Article article) {
+        return "articles/process";
+    }
+
 
 }
