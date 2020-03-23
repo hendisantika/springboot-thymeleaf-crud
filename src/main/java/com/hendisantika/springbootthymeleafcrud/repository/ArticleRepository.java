@@ -17,4 +17,6 @@ import org.springframework.data.repository.query.Param;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("from Article a where a.slug = :slug")
     Article findArticle(@Param("slug") String slug);
+
+    Article findBySlug(String slug);
 }
