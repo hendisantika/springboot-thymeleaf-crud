@@ -44,4 +44,8 @@ public class ArticleService {
             throw new ArticleNotFoundException(String.format("Article id %s is not found", slug));
         return article;
     }
+
+    public List<Article> search(String term) {
+        return articleRepository.findByTitleOrContent("%" + term + "%");
+    }
 }
