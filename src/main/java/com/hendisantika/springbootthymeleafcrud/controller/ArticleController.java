@@ -49,5 +49,10 @@ public class ArticleController {
         return "articles/process";
     }
 
+    @GetMapping("/article/update/{slug}")
+    public String update(@PathVariable String slug, Model model) {
+        model.addAttribute("article", articleService.getArticle(slug));
+        return "articles/process";
+    }
 
 }
