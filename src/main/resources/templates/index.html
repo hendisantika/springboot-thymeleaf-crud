@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:text="'Waktu Saat ini : ' + ${#temporals.format(waktu, 'dd-MMM-yyyy HH:mm')}"></p>
+
+<a th:href="@{/plain-page}">Plain Page</a> | <a th:href="@{/pricing-tables}">Pricing Tables</a>
+</body>
+</html>
