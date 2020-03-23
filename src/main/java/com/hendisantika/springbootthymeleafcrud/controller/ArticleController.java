@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
@@ -26,6 +27,12 @@ public class ArticleController {
     @GetMapping("/articles")
     public String index(Model model) {
         model.addAttribute("articles", articleService.getArticles());
+        return "articles/index";
+    }
+
+    @GetMapping("/articles/search")
+    public String search(@RequestParam(value = "term", required = false, defaultValue = "") String term, Model model) {
+        model.addAttribute("articles", articleService.search(term));
         return "articles/index";
     }
 
