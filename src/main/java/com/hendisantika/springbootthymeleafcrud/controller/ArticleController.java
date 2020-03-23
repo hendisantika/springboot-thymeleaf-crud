@@ -3,6 +3,8 @@ package com.hendisantika.springbootthymeleafcrud.controller;
 import com.hendisantika.springbootthymeleafcrud.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
@@ -20,4 +22,11 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+
+    @GetMapping("/articles")
+    public String index(Model model) {
+        model.addAttribute("articles", articleService.getArticles());
+        return "articles/index";
+    }
+
 }
