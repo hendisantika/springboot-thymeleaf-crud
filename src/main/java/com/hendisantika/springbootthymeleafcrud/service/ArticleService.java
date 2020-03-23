@@ -1,6 +1,7 @@
 package com.hendisantika.springbootthymeleafcrud.service;
 
 import com.hendisantika.springbootthymeleafcrud.entity.Article;
+import com.hendisantika.springbootthymeleafcrud.exception.ArticleNotFoundException;
 import com.hendisantika.springbootthymeleafcrud.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,12 @@ public class ArticleService {
 
     public Article save(Article article) {
         return articleRepository.save(article);
+    }
+
+    public Article getArticle(Long id) throws ArticleNotFoundException {
+        Article article =
+                articleRepository.findById(id).orElseThrow(() -> new ArticleNotFoundException(String.format("Article " +
+                        "id %s is not found", id)));
+        return article;
     }
 }
