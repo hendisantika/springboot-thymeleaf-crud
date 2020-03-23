@@ -48,4 +48,8 @@ public class ArticleService {
     public List<Article> search(String term) {
         return articleRepository.findByTitleOrContent("%" + term + "%");
     }
+
+    public void delete(Long id) {
+        articleRepository.deleteById(id);
+    }
 }
