@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 /**
  * Created by IntelliJ IDEA.
@@ -53,6 +55,13 @@ public class ArticleController {
     public String update(@PathVariable String slug, Model model) {
         model.addAttribute("article", articleService.getArticle(slug));
         return "articles/process";
+    }
+
+    @PostMapping("/article/process")
+    public String process(Article article, SessionStatus sessionStatus) {
+        articleService.save(article);
+        sessionStatus.setComplete();
+        return "redirect:/articles";
     }
 
 }
