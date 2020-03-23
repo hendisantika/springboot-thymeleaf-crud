@@ -37,4 +37,11 @@ public class ArticleService {
                         "id %s is not found", id)));
         return article;
     }
+
+    public Article getArticle(String slug) throws ArticleNotFoundException {
+        Article article = articleRepository.findBySlug(slug);
+        if (article == null)
+            throw new ArticleNotFoundException(String.format("Article id %s is not found", slug));
+        return article;
+    }
 }
