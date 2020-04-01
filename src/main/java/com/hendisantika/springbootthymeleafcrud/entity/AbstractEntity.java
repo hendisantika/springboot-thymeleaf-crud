@@ -3,7 +3,9 @@ package com.hendisantika.springbootthymeleafcrud.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.GeneratedValue;
@@ -37,8 +39,14 @@ public abstract class AbstractEntity implements Serializable {
     @CreatedDate
     private LocalDateTime created;
 
+    @CreatedBy
+    private String createdBy;
+
     @LastModifiedDate
     private LocalDateTime updated;
+
+    @LastModifiedBy
+    private String lastModifiedBy;
 
     private boolean deleted;
 
