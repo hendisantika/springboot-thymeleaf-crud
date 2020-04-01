@@ -65,9 +65,9 @@
                                         <i data-th-class="${article.activated}?'fa fa-check-circle':'fa fa-times-circle'"></i>
                                     </td>
                                     <td class=" "
-                                        data-th-text="${#dates.format(article.created, 'dd MMMM yyyy HH:mm')}"></td>
+                                        data-th-text="${#temporals.format(article.created, 'dd MMMM yyyy HH:mm')}"></td>
                                     <td class=" "
-                                        data-th-text="${#dates.format(article.updated, 'dd MMMM yyyy HH:mm')}"></td>
+                                        data-th-text="${#temporals.format(article.updated, 'dd MMMM yyyy HH:mm')}"></td>
                                     <td class=" last">
                                         <a data-th-href="@{/article/view/} + ${article.slug}">View</a> - <a
                                             data-th-href="@{/article/update/} + ${article.slug}">Update</a> - <a
