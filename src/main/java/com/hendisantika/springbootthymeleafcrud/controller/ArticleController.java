@@ -2,6 +2,7 @@ package com.hendisantika.springbootthymeleafcrud.controller;
 
 import com.hendisantika.springbootthymeleafcrud.entity.Article;
 import com.hendisantika.springbootthymeleafcrud.service.ArticleService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import static com.hendisantika.springbootthymeleafcrud.util.WordUtil.toSlug;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : springboot-thymeleaf-crud
@@ -22,6 +25,7 @@ import org.springframework.web.bind.support.SessionStatus;
  * Date: 23/03/20
  * Time: 09.18
  */
+@Log4j2
 @Controller
 @RequestMapping("articles")
 @SessionAttributes("articles")
@@ -61,14 +65,19 @@ public class ArticleController {
 
     @PostMapping("/process")
     public String process(Article article, SessionStatus sessionStatus) {
+        log.info("Adding New Article");
+        String slug = toSlug(article.getTitle());
+        article.setSlug(slug);
         articleService.save(article);
         sessionStatus.setComplete();
+        log.info("Add New Article success.");
         return "redirect:/articles";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
         articleService.delete(id);
+        log.info("Deleting Article");
         return "redirect:/articles";
     }
 

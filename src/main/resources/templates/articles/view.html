@@ -14,7 +14,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>[[*{articleView.title}]]
-                            <small data-th-text="${#dates.format(articleView.created, 'dd MMMM yyyy HH:mm')}"></small>
+                            <small data-th-text="${#temporals.format(articleView.created, 'dd MMMM yyyy HH:mm')}"></small>
                         </h2>
                         <ul class="nav navbar-right panel_toolbox">
                         </ul>
